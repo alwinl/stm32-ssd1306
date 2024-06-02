@@ -16,6 +16,10 @@ _BEGIN_STD_C
 
 #include "ssd1306_conf.h"
 
+#ifndef USE_LIBOPENCM3
+
+#ifndef USE_LIBOPENCM3
+
 
 #if defined(STM32WB)
 #include "stm32wbxx_hal.h"
@@ -47,7 +51,9 @@ _BEGIN_STD_C
 #else
 #error "SSD1306 library was tested only on STM32F0, STM32F1, STM32F3, STM32F4, STM32F7, STM32L0, STM32L1, STM32L4, STM32H7, STM32G0, STM32G4, STM32WB MCU families. Please modify ssd1306.h if you know what you are doing. Also please send a pull request if it turns out the library works on other MCU's as well!"
 #endif
+#else
 
+#endif // USE_LIBOPENCM3
 
 #ifdef SSD1306_X_OFFSET
 #define SSD1306_X_OFFSET_LOWER (SSD1306_X_OFFSET & 0x0F)
@@ -171,7 +177,7 @@ void ssd1306_FillRectangle(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD13
 
 /**
  * @brief Invert color of pixels in rectangle (include border)
- * 
+ *
  * @param x1 X Coordinate of top left corner
  * @param y1 Y Coordinate of top left corner
  * @param x2 X Coordinate of bottom right corner
